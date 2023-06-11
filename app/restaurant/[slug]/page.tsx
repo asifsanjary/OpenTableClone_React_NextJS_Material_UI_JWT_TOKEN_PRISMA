@@ -1,4 +1,5 @@
 import { PrismaClient, Review } from "@prisma/client";
+import { notFound } from "next/navigation";
 import React from "react";
 import Description from "./components/Description";
 import Images from "./components/Images";
@@ -34,7 +35,7 @@ const fetchRestaurantBySlug = async (slug: string): Promise<Restaurant> => {
     }
   });
   if (!restaurant) {
-    throw new Error();
+    throw notFound();
   }
   return restaurant;
 }
@@ -46,7 +47,7 @@ const RestaurantPage = async ({ params }: { params: { slug: string } }) => {
       <div className="bg-white w-[70%] rounded p-3 shadow">
         <RestaurantNavbar slug={restaurant.slug} />
         <Title name={restaurant.name} />
-        <Rating reviews={restaurant.reviews}/>
+        <Rating reviews={restaurant.reviews} />
         <Description description={restaurant.description} />
         <Images images={restaurant.images} />
         <Reviews reviews={restaurant.reviews} />
