@@ -100,8 +100,8 @@ model Booking {
   booker_phone      String
   booker_first_name String
   booker_last_name  String
-  booker_occasion   String
-  booker_request    String
+  booker_occasion   String?
+  booker_request    String?
   restaurant_id     Int
   restaurant        Restaurant        @relation(fields: [restaurant_id], references: [id])
   tables            BookingsOnTable[]
@@ -124,5 +124,6 @@ model BookingsOnTable {
   booking    Booking @relation(fields: [booking_id], references: [id])
   table_id   Int
   table      Table   @relation(fields: [table_id], references: [id])
+
   @@id([booking_id, table_id])
 }

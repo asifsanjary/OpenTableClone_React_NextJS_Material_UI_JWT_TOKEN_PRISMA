@@ -1,23 +1,28 @@
 import React from "react";
+import { convertToDisplayTime, Time } from "../../../../utils/convertToDisplayTime";
+import { format } from "date-fns";
 
-const Header = () => {
+const Header = (
+  { image, name, date, partySize }:
+    { image: string; name: string; date: string; partySize: string; }) => {
+  const [day, time] = date.split("T")
   return (
     <div>
       <h3 className="font-bold">You're almost done!</h3>
       <div className="mt-5 flex">
         <img
-          src="https://images.otstatic.com/prod/25034471/1/medium.jpg"
+          src={image}
           alt=""
           className="w-32 h-18 rounded"
         />
         <div className="ml-4">
-          <h1 className="text-3xl font-bold">
-            Sirocco – Tower Club at lebua State Tower
-          </h1>
+          <h1 className="text-3xl font-bold">{name}</h1>
           <div className="flex mt-3">
-            <p className="mr-6">Tue, 22, 2023</p>
-            <p className="mr-6">7:30 PM</p>
-            <p className="mr-6">3 people</p>
+            <p className="mr-6">
+              {format(new Date(day), "ccc, LLL d")}
+            </p>
+            <p className="mr-6">{convertToDisplayTime(time as Time)}</p>
+            <p className="mr-6">{partySize} {parseInt(partySize) > 1 ? ("people") : ("person")}</p>
           </div>
         </div>
       </div>
