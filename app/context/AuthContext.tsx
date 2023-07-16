@@ -35,6 +35,7 @@ export default function AuthContext({
 }: {
     children: React.ReactNode
 }) {
+    let baseUrl = ""
     const [authState, setAuthState] = useState<State>({
         loading: true,
         data: null,
@@ -57,7 +58,7 @@ export default function AuthContext({
                 });
             }
 
-            const response = await axios.get("http://localhost:3000/api/auth/me", {
+            const response = await axios.get(`${baseUrl}/api/auth/me`, {
                 headers: {
                     Authorization: `Bearer ${jwt}`
                 }
@@ -81,6 +82,7 @@ export default function AuthContext({
     }
 
     useEffect(() => {
+        baseUrl = window.location.origin
         fetchUser();
     }, []);
 
