@@ -33,6 +33,7 @@ const Reserve = async ({ params, searchParams }: {
   params: { slug: string; }
   searchParams: { date: string; partySize: string; }
 }) => {
+  console.info(`date ${searchParams.date} in reserve page`)
   const restaurant = await fetchRestaurantBySlug(params.slug)
   return (
     <div className="border-t h-screen">
