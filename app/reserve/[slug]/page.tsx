@@ -6,10 +6,19 @@ import Header from "./components/Header";
 
 const prisma = new PrismaClient();
 
-const fetchRestaurantBySlug = async (slug: string) => {
+export interface Restaurant {
+  main_image: string;
+  name: string;
+}
+
+const fetchRestaurantBySlug = async (slug: string): Promise<Restaurant> => {
   const restaurant = await prisma.restaurant.findUnique({
     where: {
       slug
+    },
+    select: {
+      main_image: true,
+      name: true,
     }
   })
 

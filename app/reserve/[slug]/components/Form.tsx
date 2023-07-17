@@ -42,9 +42,12 @@ const Form = (
       inputs.bookerEmail &&
       inputs.bookerPhone
     ) {
-      return setDisabled(false);
+      setDisabled(false);
+
     }
-    setDisabled(true);
+    else {
+      setDisabled(true);
+    }
   }, [inputs]);
 
   const handleClick = async () => {
