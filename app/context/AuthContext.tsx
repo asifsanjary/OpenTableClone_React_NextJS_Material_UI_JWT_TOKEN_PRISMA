@@ -80,6 +80,10 @@ export default function AuthContext({
         }
     }
 
+    useEffect(() => {
+        fetchUser();
+    }, []);
+
     return (
         <AuthenticationContext.Provider value={{
             ...authState,
