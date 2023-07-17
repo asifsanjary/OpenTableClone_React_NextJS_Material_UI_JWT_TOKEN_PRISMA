@@ -40,6 +40,9 @@ export default function useAvailabilities() {
       setLoading(false);
       setData(response.data);
     } catch (error: any) {
+      console.log(
+        `${baseUrl}/api/restaurant/${slug}/availability threw error: ${error}`
+      );
       setLoading(false);
       setError(error.response.data.errorMessage);
     }

@@ -78,16 +78,16 @@ const ReservationCard = ({
         </select>
       </div>
       <div className="flex justify-between">
-        <div className="flex flex-col w-[48%]">
+        <div className="flex flex-col w-[40%]">
           <label htmlFor=""> Date </label>
           <DatePicker
             selected={selectedDate}
             onChange={handleDateChange}
             dateFormat="MMMM d"
-            wrapperClassName="w-[48%]"
+            wrapperClassName="w-[20%]"
             className="py-3 border-b text-reg font-light w-28" />
         </div>
-        <div className="flex flex-col w-[48%]">
+        <div className="flex flex-col w-[40%]">
           <label htmlFor=""> Time </label>
           <select
             name=""
@@ -96,7 +96,7 @@ const ReservationCard = ({
             value={time}
             onChange={(e) => setTime(e.target.value)}>
             {filterTimeByRestaurantOpenWindow().map((time, index) => (
-              <option key={index} value={time.time}>{time.displayTime}</option>
+              <option key={index} value={time.time} className="w-[45%]">{time.displayTime}</option>
             ))}
           </select>
         </div>
@@ -113,21 +113,23 @@ const ReservationCard = ({
         <div className="mt-4">
           <p className="text-reg">Select a Time</p>
           <div className="flex flex-wrap mt-2">
-            {data.map(time => {
+            {data.map((time, index) => {
               return time.available
                 ? (<Link
                   href={`/reserve/${slug}?date=${day}T${time.time}&partySize=${partySize}`}
                   className="bg-red-600 cursor-pointer p-2 w-24 text-white mb-3 rounded mr-3"
+                  key={index}
                 >
                   <p className="text-sm text-center font-bold">
                     {convertToDisplayTime(time.time as Time)}
                   </p>
                 </Link>)
-                : <p className="bg-gray-300 p-2 w-24 mb-3 rounded mr-3"></p>
+                : <p className="bg-gray-300 p-2 w-24 mb-3 rounded mr-3" key={index}></p>
             })}
           </div>
         </div>
       ) : null}
+      {error && <p className="bg-gray-300 p-2 mb-3 rounded mr-3">{error}</p>}
     </div>
   );
 };
