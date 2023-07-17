@@ -4,8 +4,6 @@ import React from "react";
 import Description from "./components/Description";
 import Images from "./components/Images";
 import Rating from "./components/Rating";
-import ReservationCard from "./components/ReservationCard";
-import RestaurantNavbar from "./components/RestaurantNavbar";
 import Reviews from "./components/Reviews";
 import Title from "./components/Title";
 
@@ -48,22 +46,11 @@ const RestaurantPage = async ({ params }: { params: { slug: string } }) => {
   const restaurant = await fetchRestaurantBySlug(params.slug);
   return (
     <>
-      <div className="bg-white w-[70%] rounded p-3 shadow">
-        <RestaurantNavbar slug={restaurant.slug} />
-        <Title name={restaurant.name} />
-        <Rating reviews={restaurant.reviews} />
-        <Description description={restaurant.description} />
-        <Images images={restaurant.images} />
-        <Reviews reviews={restaurant.reviews} />
-      </div>
-      {/* RESERVATION CARD PORTION */}
-      <div className="w-[27%] relative text-reg">
-        <ReservationCard
-          openTime={restaurant.open_time}
-          closeTime={restaurant.close_time}
-          slug={restaurant.slug} />
-      </div>
-      {/* RESERVATION CARD PORTION */}
+      <Title name={restaurant.name} />
+      <Rating reviews={restaurant.reviews} />
+      <Description description={restaurant.description} />
+      <Images images={restaurant.images} />
+      <Reviews reviews={restaurant.reviews} />
     </>
   );
 };

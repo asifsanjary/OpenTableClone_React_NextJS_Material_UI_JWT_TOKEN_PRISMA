@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const RestaurantNavbar = ({ slug }: { slug: string }) => {
   return (
-    <nav className="flex text-reg border-b pb-2">
+    <nav className="flex text-reg border-b pb-2 w-full">
       <Link href={`/restaurant/${slug}`} className="mr-7">
         {" "}
         Overview{" "}
