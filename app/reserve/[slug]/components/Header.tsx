@@ -5,6 +5,7 @@ import { format } from "date-fns";
 const Header = (
   { image, name, date, partySize }:
     { image: string; name: string; date: string; partySize: string; }) => {
+  console.info(`date ${date} in Header`)
   const [day, time] = date.split("T")
   return (
     <div>
