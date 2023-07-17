@@ -124,12 +124,11 @@ const ReservationCard = ({
                     {convertToDisplayTime(time.time as Time)}
                   </p>
                 </Link>)
-                : <p className="bg-gray-300 p-2 w-24 mb-3 rounded mr-3" key={index}></p>
+                : <p className="bg-gray-300 p-2 w-24 mb-3 rounded mr-3" key={index}>{convertToDisplayTime(time.time as Time)}</p>
             })}
           </div>
         </div>
       ) : null}
-      {error && <p className="bg-gray-300 p-2 mb-3 rounded mr-3">{error}</p>}
     </div>
   );
 };
