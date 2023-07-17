@@ -1,12 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 
 export default function useAvailabilities() {
-  let baseUrl = "";
-  useEffect(() => {
-    baseUrl = window.location.origin;
-  }, []);
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [data, setData] = useState<
@@ -25,24 +20,17 @@ export default function useAvailabilities() {
     time: string;
   }) => {
     setLoading(true);
-
     try {
-      const response = await axios.get(
-        `${baseUrl}/api/restaurant/${slug}/availability`,
-        {
-          params: {
-            day,
-            time,
-            partySize,
-          },
-        }
-      );
+      const response = await axios.get(`/api/restaurant/${slug}/availability`, {
+        params: {
+          day,
+          time,
+          partySize,
+        },
+      });
       setLoading(false);
       setData(response.data);
     } catch (error: any) {
-      console.log(
-        `${baseUrl}/api/restaurant/${slug}/availability threw error: ${error}`
-      );
       setLoading(false);
       setError(error.response.data.errorMessage);
     }

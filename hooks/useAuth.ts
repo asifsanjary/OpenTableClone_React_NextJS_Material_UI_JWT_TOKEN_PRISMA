@@ -2,15 +2,10 @@
 
 import axios from "axios";
 import { removeCookies } from "cookies-next";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AuthenticationContext } from "../app/context/AuthContext";
 
 const useAuth = () => {
-  let baseUrl = "";
-  useEffect(() => {
-    baseUrl = window.location.origin;
-  }, []);
-
   const { setAuthState } = useContext(AuthenticationContext);
   const signin = async (
     {
@@ -28,7 +23,7 @@ const useAuth = () => {
       loading: true,
     });
     try {
-      const response = await axios.post(`${baseUrl}/api/auth/signin`, {
+      const response = await axios.post(`/api/auth/signin`, {
         email,
         password,
       });
@@ -71,7 +66,7 @@ const useAuth = () => {
       loading: true,
     });
     try {
-      const response = await axios.post(`${baseUrl}/api/auth/signup`, {
+      const response = await axios.post(`/api/auth/signup`, {
         firstName,
         lastName,
         phone,

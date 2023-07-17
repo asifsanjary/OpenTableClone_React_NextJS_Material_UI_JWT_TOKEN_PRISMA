@@ -1,12 +1,9 @@
-import { useState, useEffect } from "react";
+"use client";
+
+import { useState } from "react";
 import axios from "axios";
 
 export default function useReservation() {
-  let baseUrl = "";
-  useEffect(() => {
-    baseUrl = window.location.origin;
-  }, []);
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -39,7 +36,7 @@ export default function useReservation() {
 
     try {
       const response = await axios.post(
-        `${baseUrl}/api/restaurant/${slug}/reserve`,
+        `/api/restaurant/${slug}/reserve`,
         {
           bookerFirstName,
           bookerLastName,
