@@ -1,8 +1,6 @@
-import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import findAvailableTables from "../../../../services/restaurant/findAvailableTables";
-
-const prisma = new PrismaClient();
+import { prisma } from "../../../../utils/prisma";
 
 export default async function reserve(
   req: NextApiRequest,

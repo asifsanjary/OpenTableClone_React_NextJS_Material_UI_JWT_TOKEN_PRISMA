@@ -3,9 +3,7 @@ import Header from "./components/Header";
 import ReservationCard from "./components/ReservationCard";
 import RestaurantNavbar from "./components/RestaurantNavbar";
 import { notFound } from "next/navigation";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { prisma } from "../../../utils/prisma";
 
 interface Restaurant {
   slug: string;
