@@ -13,7 +13,7 @@ export interface RestaurantCardType {
   reviews: Review[];
 }
 
-export interface RestaurantCardFinalType extends RestaurantCardType{
+export interface RestaurantCardFinalType extends RestaurantCardType {
   rating: number;
   review_count: number;
 }
@@ -41,7 +41,7 @@ export default async function Home() {
   return (
     <main>
       <Header />
-      <div className="py-3 px-36 mt-10 flex flex-wrap">
+      <div className="py-3 px-36 mt-10 flex flex-wrap justify-center">
         {restaurants.map((restaurant) => (
           <RestaurantCard key={restaurant.id} restaurant={restaurant} />
         ))}

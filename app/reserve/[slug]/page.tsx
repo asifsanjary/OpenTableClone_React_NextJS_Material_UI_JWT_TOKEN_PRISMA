@@ -30,10 +30,14 @@ const fetchRestaurantBySlug = async (slug: string): Promise<Restaurant> => {
 }
 
 const Reserve = async ({ params, searchParams }: {
-  params: { slug: string; }
-  searchParams: { date: string; partySize: string; }
+  params: {}
+  searchParams: {}
 }) => {
-  console.info(`date ${searchParams.date} in reserve page`)
+  console.info(`${JSON.stringify(searchParams)} & ${JSON.stringify(params)}`)
+  return (
+    <></>
+  )
+  /*
   const restaurant = await fetchRestaurantBySlug(params.slug)
   return (
     <div className="border-t h-screen">
@@ -50,6 +54,7 @@ const Reserve = async ({ params, searchParams }: {
       </div>
     </div>
   );
+  */
 };
 
 export default Reserve;
