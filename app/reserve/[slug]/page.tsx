@@ -33,6 +33,7 @@ const Reserve = async ({ params, searchParams }: {
   params: { slug: string; }
   searchParams: { date: string; partySize: string; }
 }) => {
+  console.log(`searchParams: ${JSON.stringify(searchParams)}`)
   const restaurant = await fetchRestaurantBySlug(params.slug)
   return (
     <div className="border-t h-screen">
