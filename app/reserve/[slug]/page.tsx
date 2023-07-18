@@ -29,27 +29,42 @@ const fetchRestaurantBySlug = async (slug: string): Promise<Restaurant> => {
   return restaurant
 }
 
-const Reserve = async ({ params, searchParams }: {
-  params: { slug: string; }
-  searchParams: { date: string; partySize: string; }
-}) => {
-  console.log(`searchParams: ${JSON.stringify(searchParams)} params: ${JSON.stringify(params)}`)
-  const restaurant = await fetchRestaurantBySlug(params.slug)
-  return (
-    <div className="border-t h-screen">
-      <div className="py-9 w-3/5 m-auto">
-        <Header
-          image={restaurant.main_image}
-          name={restaurant.name}
-          date={searchParams.date}
-          partySize={searchParams.partySize} />
-        <Form
-          slug={params.slug}
-          date={searchParams.date}
-          partySize={searchParams.partySize} />
-      </div>
-    </div>
-  );
+type Props = {
+  params?: {
+    slug?: string;
+  };
+  searchParams?: {
+    date?: string;
+    partySize?: string;
+  };
 };
 
-export default Reserve;
+export default async function Reserve(props: Props) {
+  console.log(`searchParams: ${JSON.stringify(props.searchParams)} params: ${JSON.stringify(props.params)}`)
+  if (props.params && props.params.slug && props.searchParams && props.searchParams.date && props.searchParams.partySize) {
+    const slug = props.params.slug
+    const date = props.searchParams.date
+    const partySize = props.searchParams.partySize
+    const restaurant = await fetchRestaurantBySlug(slug)
+    return (
+      <div className="border-t h-screen">
+        <div className="py-9 w-3/5 m-auto">
+          <Header
+            image={restaurant.main_image}
+            name={restaurant.name}
+            date={date}
+            partySize={partySize} />
+          <Form
+            slug={slug}
+            date={date}
+            partySize={partySize} />
+        </div>
+      </div>
+    );
+  }
+  else {
+    return notFound()
+  }
+};
+
+export const dynamic = 'force-dynamic'
