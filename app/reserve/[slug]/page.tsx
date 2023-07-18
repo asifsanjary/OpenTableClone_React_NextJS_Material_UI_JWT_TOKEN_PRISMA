@@ -40,11 +40,11 @@ type Props = {
 };
 
 export default async function Reserve(props: Props) {
-  console.log(`searchParams: ${JSON.stringify(props.searchParams)} params: ${JSON.stringify(props.params)}`)
-  if (props.params && props.params.slug && props.searchParams && props.searchParams.date && props.searchParams.partySize) {
-    const slug = props.params.slug
-    const date = props.searchParams.date
-    const partySize = props.searchParams.partySize
+  const { params, searchParams } = props;
+  const { slug } = params || {};
+  const { date, partySize } = searchParams || {};
+
+  if (slug && date && partySize) {
     const restaurant = await fetchRestaurantBySlug(slug)
     return (
       <div className="border-t h-screen">
