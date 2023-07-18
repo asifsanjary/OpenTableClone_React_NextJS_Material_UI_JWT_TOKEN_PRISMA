@@ -1,17 +1,16 @@
-import { Cuisine, PRICE, PrismaClient, Location } from "@prisma/client";
+import { Cuisine, PRICE, Location } from "@prisma/client";
 import React from "react";
 import Header from "./components/Header";
 import RestaurantCard from "./components/RestaurantCard";
 import SearchSideBar from "./components/SearchSideBar";
 import { RestaurantCardType } from "../page";
+import { prisma } from "../../utils/prisma";
 
 interface SearchParams {
   city?: string;
   cuisine?: string;
   price?: PRICE;
 }
-
-const prisma = new PrismaClient();
 
 const fetchRestaurantsByLocation = async (searchParams: SearchParams): Promise<RestaurantCardType[]> => {
   const where: any = {};

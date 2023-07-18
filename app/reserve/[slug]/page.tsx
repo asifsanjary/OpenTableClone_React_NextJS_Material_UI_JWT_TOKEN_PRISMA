@@ -1,10 +1,8 @@
-import { PrismaClient } from "@prisma/client";
 import { notFound } from "next/navigation";
 import React from "react";
 import Form from "./components/Form";
 import Header from "./components/Header";
-
-const prisma = new PrismaClient();
+import { prisma } from "../../../utils/prisma";
 
 export interface Restaurant {
   main_image: string;

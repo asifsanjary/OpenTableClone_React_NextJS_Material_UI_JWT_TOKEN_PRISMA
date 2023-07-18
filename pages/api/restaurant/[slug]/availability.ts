@@ -1,8 +1,6 @@
-import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import findAvailableTables from "../../../../services/restaurant/findAvailableTables";
-
-const primsa = new PrismaClient();
+import { prisma } from "../../../../utils/prisma";
 
 export default async function availability(
   req: NextApiRequest,
@@ -22,7 +20,7 @@ export default async function availability(
       });
     }
 
-    const restaurant = await primsa.restaurant.findUnique({
+    const restaurant = await prisma.restaurant.findUnique({
       where: {
         slug,
       },
